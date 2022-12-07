@@ -1,0 +1,596 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+    
+    <title>CRM</title>
+    <style>
+    	body{
+    		font-family: Poppins;
+		}
+		.px-15px{
+		    padding-left: 15px;
+		    padding-right: 15px;
+		}
+		.form-label{
+		    flex: 0 0 30%;
+		}
+        .form-check{
+            padding: .375rem .75rem;
+            margin: 0 .5em;
+        }
+        .required::before {
+            content: "*";
+            position: relative;
+            font-size: inherit;
+            color: #ff0000;
+            padding-right: 0.25rem;
+            font-weight: 700;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="container border border-secondary">
+        <div class="main">
+            <div class="row">   
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-12 p-0">
+                            <div class="title bg-secondary text-white text-uppercase px-15px">
+                                <span class="font-weight-bold">A. Patient Information</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row my-3 g-5">
+                        <div class="col-md-6">
+                            <div class="form-group d-inline-flex align-items-center justify-content-between w-100">
+                                <label class="form-label mr-2 mb-0">Name/Initial:</label>
+                                <input type="text" class="form-control shadow-sm rounded" name="a_name_initial">
+                            </div>
+                            <div class="form-group d-inline-flex align-items-center justify-content-between w-100">
+                                <label class="form-label mr-2 mb-0">Address:</label>
+                                <textarea class="form-control shadow-sm rounded" name="a_address" rows="3"></textarea>
+                            </div>
+                            <div class="form-group d-inline-flex align-items-center justify-content-between w-100">
+                                <label class="form-label mr-2 mb-0">Contact Number:</label>
+                                <input type="text" class="form-control shadow-sm rounded" name="a_contact_number">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group d-inline-flex align-items-center justify-content-between w-100">
+                                <label class="form-label mr-2 mb-0 required">Age:</label>
+                                <input type="number" class="form-control shadow-sm rounded" name="a_age" required>
+                            </div>
+                            <div class="form-group d-inline-flex align-items-center justify-content-between w-100">
+                                <label class="form-label mr-2 mb-0">Weight:</label>
+                                <div class="input-group-append w-100">
+                                    <input type="number" name="a_weight" class="form-control shadow-sm rounded">
+                                    <span class="input-group-text">Kg</span>
+                                </div>
+                            </div>
+                            <div class="form-group d-inline-flex align-items-center justify-content-between w-100">
+                                <label class="form-label mr-2 mb-0 required">Gender:</label>
+                                <select class="form-control" name="a_gender" required>
+                                    <option value="gender">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group d-inline-flex align-items-center justify-content-between w-100">
+                                <label class="form-label mr-2 mb-0">Pregnant:</label>
+                                <select class="form-control" name="a_pregnant">
+                                    <option value="yes">Yes</option>
+                                    <option value="no">No</option>
+                                    <option value="unknown">Unknown</option>
+                                    <option value="not_applicable">Not Applicable</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-12 p-0">
+                            <div class="title bg-secondary text-white text-uppercase px-15px">
+                                <span class="font-weight-bold">B. Suspected adverse event information</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row my-3 g-5 border-top border-bottom border-secondary">
+                        <div class="col-md-3 border-right border-secondary">
+                            <div class="row border-bottom border-secondary">
+                                <div class="col-md-12">
+                                    <div class="sub-title">
+                                        <span class="required">Type of event</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-12">
+                                    <div class="form-group d-inline-flex align-items-center justify-content-between w-100">
+                                        <select class="form-control" name="b_type_of_event" required onchange="typeofEvent();">
+                                            <option value="adverse_drug_reaction">Adverse drug reaction</option>
+                                            <option value="product_quality_problem">Product quality problem</option>
+                                            <option value="medication_error">Medication error</option>
+                                            <option value="others">Others</option>
+                                        </select>
+                                    </div>
+                                    <div id="b_type_of_event_specify" class="form-group align-items-center w-100 d-none">
+                                        <label class="form-label">Please specify</label>
+                                        <textarea class="form-control shadow-sm rounded" rows="2" name="b_please_specify_event"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="row border-bottom border-secondary">
+                                <div class="col-md-12">
+                                    <div class="sub-title">
+                                        <span>Suspected product</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-6">
+                                    <div class="form-group d-inline-flex align-items-center justify-content-between w-100">
+                                        <label class="form-label mr-2 mb-0">Brand/Trade Name</label>
+                                        <input type="text" class="form-control shadow-sm" name="b_brand_trade_name">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group d-inline-flex align-items-center justify-content-between w-100">
+                                        <label class="form-label mr-2 mb-0 required">Generic Name</label>
+                                        <input type="text" class="form-control shadow-sm rounded" name="b_brand_trade_name" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group d-inline-flex align-items-center justify-content-between w-100">
+                                        <label class="form-label mr-2 mb-0 required">Indication:</label>
+                                        <textarea class="form-control shadow-sm rounded" rows="1" name="b_indication" required></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group d-inline-flex align-items-center justify-content-between w-100">
+                                        <label class="form-label mr-2 mb-0 required">Medication Start Date:</label>
+                                        <input type="date" class="form-control shadow-sm rounded" name="b_medication_start_date" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group d-inline-flex align-items-center justify-content-between w-100">
+                                        <label class="form-label mr-2 mb-0">Medication End Date:</label>
+                                        <input type="date" class="form-control shadow-sm rounded" name="b_medication_end_date">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group d-inline-flex align-items-center justify-content-between w-100">
+                                        <label class="form-label mr-2 mb-0">Dosage From:</label>
+                                        <input type="date" class="form-control shadow-sm rounded" name="b_dosage_form">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group d-inline-flex align-items-center justify-content-between w-100">
+                                        <label class="form-label mr-2 mb-0 required">Frequency:</label>
+                                        <input type="text" class="form-control shadow-sm rounded" name="b_frequency" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group d-inline-flex align-items-center justify-content-between w-100">
+                                        <label class="form-label mr-2 mb-0">Batch/Lot number:</label>
+                                        <input type="text" class="form-control shadow-sm rounded" name="b_batch_number">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group d-inline-flex align-items-center justify-content-between w-100">
+                                        <label class="form-label mr-2 mb-0">Manufacturer:</label>
+                                        <input type="text" class="form-control shadow-sm rounded" name="b_maufacturer">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row my-3 g-5">
+                        <div class="col-md-12">
+                            <div class="form-group align-items-center w-100">
+                                <label class="form-label mb-0">Describe event including relavant tests and labratory results:</label>
+                                <textarea class="form-control shadow-sm rounded" id="summernote" name="editordata" rows="2"  name="b_describe_event"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row my-3 g-5 border-top border-bottom border-secondary">
+                        <div class="col-md-6 border-right border-secondary">
+                            <div class="row mt-3">
+                                <div class="col-md-12">
+                                    <div class="form-group d-inline-flex align-items-center justify-content-between w-100">
+                                        <label class="form-label mr-2 mb-0 required">Event start Date:</label>
+                                        <input type="date" class="form-control shadow-sm rounded" name="b_event_start_date" required>
+                                    </div>
+                                    <div class="form-group d-inline-flex align-items-center justify-content-between w-100">
+                                        <label class="form-label mr-2 mb-0 required">Event stopped Date:</label>
+                                        <input type="date" class="form-control shadow-sm rounded" name="b_event_stopped_date">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row mt-3">
+                                <div class="col-md-12">
+                                    <div class="form-group d-inline-flex align-items-center justify-content-between w-100">
+                                        <label class="form-label mr-2 mb-0">Was the adverse event treated?:</label>
+                                        <select class="form-control" name="b_was_that_treated" onchange="wasTreated()">
+                                            <option value="no">No</option>
+                                            <option value="yes">Yes</option>
+                                           
+                                            
+                                        </select>
+                                    </div>
+                                    <div class="form-group align-items-center w-100" id="was_that_treated">
+                                        <label class="form-label mr-2 mb-0">If yes, please specify:</label>
+                                        <textarea class="form-control shadow-sm rounded" rows="2" name="b_yes_specify"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row my-3 g-5 border-top border-bottom border-secondary">
+                        <div class="col-md-6 border-right border-secondary">
+                            <div class="row mt-3">
+                                <div class="col-md-12">
+                                    <div class="form-group align-items-center w-100">
+                                        <label class="form-label">Action taken after reaction?:</label>
+                                        <select class="form-control" name="b_action_taken_after_reaction">
+                                            <option value="dose_stopped">Dose stopped</option>
+                                            <option value="dose_reduced">Dose reduced</option>
+                                            <option value="no_action_taken">No action taken</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row mt-3">
+                                <div class="col-md-12">
+                                    <div class="form-group align-items-center w-100">
+                                        <label class="form-label mr-2 mb-0">Did reaction subside after reducing the dose?</label>
+                                        <select class="form-control" name="b_reaction_subside_after_reducing_the_dose">
+                                            <option value="yes">Yes</option>
+                                            <option value="no">No</option>
+                                            <option value="not_applicable">Not applicable</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group align-items-center w-100">
+                                        <label class="form-label mr-2 mb-0">Did reaction appear after reintroducing?</label>
+                                        <select class="form-control" name="b_reaction_appear_after_reinroducing">
+                                            <option value="yes">Yes</option>
+                                            <option value="no">No</option>
+                                            <option value="not_applicable">Not applicable</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row my-3 g-5 border-top border-bottom border-secondary">
+                        <div class="col-md-6 border-right border-secondary">
+                            <div class="row mt-3">
+                                <div class="col-md-12">
+                                    <div class="form-group align-items-center w-100">
+                                        <label class="form-label">Seriousness of the adverse event:</label>
+                                        <select class="form-control" name="b_seriousness_of_the_adverse_event">
+                                            <option value="not_serious">Not serious</option>
+                                            <option value="hospitalization_or_prolongation_of_hospitalization">Hospitalization or prolongation of hospitalization</option>
+                                            <option value="disability_or_permanent_damage">Disability or permanent damage</option>
+                                            <option value="congenital_anomaly_birth_defect">Congenital anomaly/birth defect</option>
+                                            <option value="life_threatening">Life Threatening</option>
+                                            <option value="death">Death</option>
+                                            <option value="other_medically_important">Other Medically important</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row mt-3">
+                                <div class="col-md-12">
+                                    <div class="form-group align-items-center w-100">
+                                        <label class="form-label required">Outcomes attributed to the adverse event:</label>
+                                        <select class="form-control" name="b_outcomes_attributed_to_the_adverse_event" onchange="outcomesAttributed()" required>
+                                            <option value="recovered">Recovered</option>
+                                            <option value="recovered_resolved_with_sequela">Recovered/resolved with sequela</option>
+                                            <option value="not_recovered">Not recovered</option>
+                                            <option value="unknown">Unknown</option>
+                                            <option value="fatal">Fatal(Date of Death)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12" id="date_of_death">
+                                    <div class="form-group d-inline-flex align-items-center justify-content-between w-100" >
+                                        <label class="form-label mr-2 mb-0">Date of death:</label>
+                                        <input type="date" class="form-control shadow-sm rounded" name="b_date_of_death">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row my-3 g-5 border-top border-secondary">
+                        <div class="col-md-12">
+                            <div class="row mt-3">
+                                <div class="col-md-12">
+                                    <div class="form-group align-items-center w-100">
+                                        <label class="form-label">Other relevant history: (pre-existing medical history)</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group align-items-center w-100" name="b_other_relevant_history" onchange="relevantHistory()">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="hypersensitivity" value="hypersensitivity" name="b_hypersensitivity">
+                                            <label class="form-check-label" for="hypersensitivity">Hypersensitivity</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="allergies" value="allergies" 
+                                            name="b_allergies">
+                                            <label class="form-check-label" for="allergies">Allergies</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="liver_or_kidney_problems" value="liver_or_kidney_problems" name="b_liver_or_kidny_problems">
+                                            <label class="form-check-label" for="liver_or_kidney_problems">Liver or kidney problems</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="smoking" value="smoking" name="b_smoking">
+                                            <label class="form-check-label" for="smoking">Smoking</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="alcohol" value="alcohol" name="b_alcohol">
+                                            <label class="form-check-label" for="alcohol">Alcohol</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="diabetes" value="diabetes" name="b_diabetes">
+                                            <label class="form-check-label" for="diabetes">Diabetes</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="others" value="others" name="b_others">
+                                            <label class="form-check-label" for="others">Others</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12" id="specify_history">
+                                    <div class="form-group align-items-center w-100">
+                                        <label class="form-label">Please specify</label>
+                                        <textarea class="form-control shadow-sm rounded" rows="2" name="b_please_specify_history"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-12 p-0">
+                            <div class="title bg-secondary text-white text-uppercase px-15px">
+                                <span class="font-weight-bold">C. Other Concomitant Medicine Information</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 p-0">
+                            <table class="table table-bordered">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Brand/Trade Name</th>
+                                    <th scope="col">Generic name</th>
+                                    <th scope="col">Indication</th>
+                                    <th scope="col">Dosage form</th>
+                                    <th scope="col">Strength & Frequency</th>
+                                    <th scope="col">Action</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="increment">
+                                        <td>
+                                            <input type="text" class="form-control shadow-sm rounded" name="c_brand_name[]">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control shadow-sm rounded" name="c_generic_name[]">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control shadow-sm rounded" name="c_indication[]">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control shadow-sm rounded" name="c_dosage_form[]">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control shadow-sm rounded" name="c_strength_and_frequency[]">
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-icon btn-success btn-sm" id="AddNewConcomitantMedicine" type="button"><i class="fa fa-plus p-0"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tbody class="clone d-none">
+                                    <tr>
+                                        <td>
+                                            <input type="text" class="form-control shadow-sm rounded" name="c_brand_name[]">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control shadow-sm rounded" name="c_generic_name[]">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control shadow-sm rounded" name="c_indication[]">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control shadow-sm rounded" name="c_dosage_form[]">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control shadow-sm rounded" name="c_strength_and_frequency[]">
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-icon btn-danger btn-sm" type="button"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                              </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-12 p-0">
+                            <div class="title bg-secondary text-white text-uppercase px-15px">
+                                <span class="font-weight-bold">D. Reporter information</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row my-3 g-5">
+                        <div class="col-md-6">
+                            <div class="form-group d-inline-flex align-items-center justify-content-between w-100">
+                                <label class="form-label mr-2 mb-0 required">Name:</label>
+                                <input type="text" class="form-control shadow-sm rounded" name="d_name" required>
+                            </div>
+                            <div class="form-group d-inline-flex align-items-center justify-content-between w-100">
+                                <label class="form-label mr-2 mb-0 required">Email:</label>
+                                <input type="text" class="form-control shadow-sm rounded" name="d_email" required>
+                            </div>
+                            <div class="form-group d-inline-flex align-items-center justify-content-between w-100">
+                                <label class="form-label mr-2 mb-0 required">Occupation:</label>
+                                <input type="text" class="form-control shadow-sm rounded" name="d_occupation" required>
+                            </div>
+                            <div class="form-group d-inline-flex align-items-center justify-content-between w-100">
+                                <label class="form-label mr-2 mb-0 required">Date of report submission:</label>
+                                <input type="date" class="form-control shadow-sm rounded" name="d_date" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group d-inline-flex align-items-center justify-content-between w-100">
+                                <label class="form-label mr-2 mb-0 required">Address:</label>
+                                <textarea class="form-control shadow-sm rounded" rows="1" name="d_address" required></textarea>
+                            </div>
+                            <div class="form-group d-inline-flex align-items-center justify-content-between w-100">
+                                <label class="form-label mr-2 mb-0 required">Mobile Phone:</label>
+                                <input type="text" class="form-control shadow-sm rounded" name="d_mobile" required>
+                            </div>
+                            <div class="form-group d-inline-flex align-items-center justify-content-between w-100">
+                                <label class="form-label mr-2 mb-0 required">Signature:</label>
+                                <input type="text" class="form-control shadow-sm rounded" name="d_signature" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+    <script>
+
+        $( document ).ready(function() {
+            $('#summernote').summernote();
+            typeofEvent();
+            wasTreated();
+            outcomesAttributed();
+            relevantHistory();
+
+            $("#others").click(function(){
+                alert("The other was clicked.");
+            });
+            $("#alcohol").click(function(){
+                alert("The Alcohol was clicked.");
+            });
+
+       
+        });
+
+        function typeofEvent(){
+            if($("[name='b_type_of_event']").val() == 'others')
+            {
+                if($('#b_type_of_event_specify').hasClass('d-none')){
+                    $('#b_type_of_event_specify').removeClass('d-none')
+                }
+            }
+            else
+            {
+                if(!$('#b_type_of_event_specify').hasClass('d-none')){
+                    $('#b_type_of_event_specify').addClass('d-none')
+                }
+            }
+        };
+        function wasTreated(){
+            if($("[name='b_was_that_treated']").val() == 'yes')
+            {
+                if($('#was_that_treated').hasClass('d-none')){
+                    $('#was_that_treated').removeClass('d-none')
+                }
+            }
+            else
+            {
+                if(!$('#was_that_treated').hasClass('d-none')){
+                    $('#was_that_treated').addClass('d-none')
+                }
+            }
+        };
+        function outcomesAttributed(){
+            if($("[name='b_outcomes_attributed_to_the_adverse_event']").val() == 'fatal')
+            {
+                if($('#date_of_death').hasClass('d-none')){
+                    $('#date_of_death').removeClass('d-none')
+                }
+            }
+            else
+            {
+                if(!$('#date_of_death').hasClass('d-none')){
+                    $('#date_of_death').addClass('d-none')
+                }
+            }
+        };
+        function relevantHistory(){
+            if($("[name='b_other_relevant_history']").val() == 'others')
+            {
+                if($('#specify_history').hasClass('d-none')){
+                    $('#specify_history').removeClass('d-none')
+                }
+            }
+            else
+            {
+                if(!$('#specify_history').hasClass('d-none')){
+                    $('#specify_history').addClass('d-none')
+                }
+            }
+        };
+
+        $("#AddNewConcomitantMedicine").click(function(){ 
+            var row = $(".clone").html();
+            $(".increment").after(row);
+        });
+        $("body").on("click",".btn-danger",function(){ 
+            $(this).parent().parent().remove();
+        });
+    </script>
+  </body>
+</html>
